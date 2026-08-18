@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryomen Sukuna - King of Curses | 3D Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sukuna-red: #e63946;
+    --sukuna-dark: #0d0d0d;
+    --sukuna-purple: #6d28d9;
+    --sukuna-gold: #fbbf24;
+    --sukuna-pink: #f472b6;
+    --sukuna-ink: #1a1a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #050505;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .sukuna-container {
+    width: 100%;
+    max-width: 1100px;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a0a1a 50%, #0f0f23 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(230,57,70,0.3), inset 0 0 60px rgba(0,0,0,0.5);
+    position: relative;
+    border: 1px solid rgba(230,57,70,0.3);
+    animation: container-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes container-glow {
+    0%, 100% { box-shadow: 0 0 60px rgba(230,57,70,0.3), inset 0 0 60px rgba(0,0,0,0.5); }
+    50% { box-shadow: 0 0 100px rgba(230,57,70,0.5), inset 0 0 60px rgba(0,0,0,0.5); }
+  }
+
+  .sukuna-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(230,57,70,0.2);
+  }
+
+  .sukuna-title {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--sukuna-red);
+    text-shadow: 0 0 20px rgba(230,57,70,0.6);
+    letter-spacing: 4px;
+    animation: title-flicker 3s ease-in-out infinite;
+  }
+
+  @keyframes title-flicker {
+    0%, 100% { text-shadow: 0 0 20px rgba(230,57,70,0.6); }
+    50% { text-shadow: 0 0 40px rgba(230,57,70,0.9), 0 0 60px rgba(230,57,70,0.4); }
+  }
+
+  .sukuna-subtitle {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .music-btn {
+    background: linear-gradient(135deg, #e63946, #991b1b);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(230,57,70,0.4);
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(230,57,70,0.7);
+  }
+
+  .music-btn.off {
+    background: #333;
+    box-shadow: none;
+  }
+
+  .music-btn .wave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--sukuna-red);
+    animation: wave-pulse 2s infinite;
+    opacity: 0;
+  }
+
+  @keyframes wave-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+
+  .main-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .image-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 3D Carousel */
+  .carousel-3d-wrapper {
+    perspective: 1200px;
+    width: 320px;
+    height: 380px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .carousel-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: carousel-spin 20s linear infinite;
+  }
+
+  .carousel-3d:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes carousel-spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  .carousel-item {
+    position: absolute;
+    width: 220px;
+    height: 280px;
+    left: 50%;
+    top: 50%;
+    margin-left: -110px;
+    margin-top: -140px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(230,57,70,0.4);
+    border: 2px solid rgba(230,57,70,0.3);
+    backface-visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(280px); }
+  .carousel-item:nth-child(2) { transform: rotateY(120deg) translateZ(280px); }
+  .carousel-item:nth-child(3) { transform: rotateY(240deg) translateZ(280px); }
+
+  /* 3D Flip Card */
+  .flip-card-3d {
+    perspective: 1000px;
+    width: 300px;
+    height: 180px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .flip-card-3d:hover .flip-card-inner,
+  .flip-card-3d.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(230,57,70,0.3);
+    border: 2px solid rgba(230,57,70,0.2);
+  }
+
+  .flip-card-front img, .flip-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #1a0a1a, #0f0f23);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .flip-card-back h3 {
+    color: var(--sukuna-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(251,191,36,0.5);
+  }
+
+  .flip-card-back p {
+    color: #aaa;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.5;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  /* Floating 3D elements */
+  .floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    pointer-events: none;
+    animation: orb-float 8s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, var(--sukuna-red), transparent);
+    top: 10%; left: 5%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, var(--sukuna-purple), transparent);
+    top: 60%; right: 5%;
+    animation-delay: -3s;
+  }
+
+  .orb-3 {
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, var(--sukuna-gold), transparent);
+    bottom: 20%; left: 30%;
+    animation-delay: -6s;
+  }
+
+  @keyframes orb-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.2); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  /* 3D Text Effect */
+  .text-3d {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--sukuna-red);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+      1px 1px 0 #991b1b,
+      2px 2px 0 #7f1d1d,
+      3px 3px 0 #000;
+    animation: text-3d-bounce 2s ease-in-out infinite;
+    margin-top: 10px;
+  }
+
+  @keyframes text-3d-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .info-section {
+    flex: 1.5;
+    min-width: 300px;
+  }
+
+  .info-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(230,57,70,0.15);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    transform-style: preserve-3d;
+    animation: card-float 6s ease-in-out infinite;
+  }
+
+  .info-card:nth-child(2) { animation-delay: -1.5s; }
+  .info-card:nth-child(3) { animation-delay: -3s; }
+  .info-card:nth-child(4) { animation-delay: -4.5s; }
+
+  @keyframes card-float {
+    0%, 100% { transform: translateY(0) rotateX(0deg); }
+    50% { transform: translateY(-5px) rotateX(1deg); }
+  }
+
+  .info-card:hover {
+    border-color: rgba(230,57,70,0.4);
+    box-shadow: 0 0 30px rgba(230,57,70,0.1);
+    transform: translateY(-8px) scale(1.01);
+    animation: none;
+  }
+
+  .info-label {
+    font-size: 11px;
+    color: var(--sukuna-red);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .info-text {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.7;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    background: rgba(230,57,70,0.1);
+    border: 1px solid rgba(230,57,70,0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--sukuna-red);
+    letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+
+  .stat-pill:hover {
+    background: rgba(230,57,70,0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(230,57,70,0.2);
+  }
+
+  .abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ability-item {
+    background: rgba(109,40,217,0.1);
+    border: 1px solid rgba(109,40,217,0.2);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    color: #c4b5fd;
+    text-align: center;
+    transition: all 0.3s;
+    transform-style: preserve-3d;
+  }
+
+  .ability-item:hover {
+    background: rgba(109,40,217,0.2);
+    transform: translateY(-3px) rotateX(5deg);
+    box-shadow: 0 8px 20px rgba(109,40,217,0.2);
+  }
+
+  .quote-box {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--sukuna-gold);
+    font-style: italic;
+    text-align: center;
+    padding: 16px;
+    border-left: 3px solid var(--sukuna-gold);
+    background: rgba(251,191,36,0.05);
+    border-radius: 0 12px 12px 0;
+    margin-top: 16px;
+    transition: opacity 0.5s;
+    animation: quote-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes quote-glow {
+    0%, 100% { border-left-color: var(--sukuna-gold); box-shadow: inset 3px 0 10px rgba(251,191,36,0.1); }
+    50% { border-left-color: #f59e0b; box-shadow: inset 3px 0 20px rgba(251,191,36,0.2); }
+  }
+
+  .controls-hint {
+    text-align: center;
+    padding: 12px;
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .curse-mark {
+    position: absolute;
+    font-size: 40px;
+    color: rgba(230,57,70,0.1);
+    pointer-events: none;
+    animation: mark-float 6s ease-in-out infinite;
+  }
+
+  @keyframes mark-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+    50% { transform: translateY(-20px) rotate(10deg); opacity: 0.2; }
+  }
+
+  .domain-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--sukuna-red), var(--sukuna-purple), var(--sukuna-gold));
+    width: 100%;
+    animation: domain-expand 4s ease-in-out infinite;
+  }
+
+  @keyframes domain-expand {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* 3D Cube decoration */
+  .cube-container {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    perspective: 200px;
+    top: 80px;
+    right: 80px;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cube-spin 10s linear infinite;
+  }
+
+  .cube-face {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--sukuna-red);
+    background: rgba(230,57,70,0.1);
+  }
+
+  .cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(30px); }
+  .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(30px); }
+  .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(30px); }
+  .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(30px); }
+  .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(30px); }
+  .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(30px); }
+
+  @keyframes cube-spin {
+    from { transform: rotateX(-20deg) rotateY(0deg); }
+    to { transform: rotateX(-20deg) rotateY(360deg); }
+  }
+
+  @media (max-width: 600px) {
+    .main-content { flex-direction: column; align-items: center; }
+    .carousel-3d-wrapper { width: 260px; height: 320px; }
+    .carousel-item { width: 160px; height: 200px; margin-left: -80px; margin-top: -100px; }
+    .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(180px); }
+    .carousel-item:nth-child(2) { transform: rotateY(120deg) translateZ(180px); }
+    .carousel-item:nth-child(3) { transform: rotateY(240deg) translateZ(180px); }
+    .flip-card-3d { width: 260px; height: 150px; }
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div class="sukuna-container">
+  <div class="domain-bar"></div>
+
+  <div class="sukuna-header">
+    <div>
+      <div class="sukuna-title">RYOMEN SUKUNA</div>
+      <div class="sukuna-subtitle">King of Curses</div>
+    </div>
+    <button class="music-btn" id="musicToggle" title="Toggle Ambient Music">
+      <span id="musicIcon">🔊</span>
+      <div class="wave" id="musicWave"></div>
+    </button>
+  </div>
+
+  <!-- Floating Orbs -->
+  <div class="floating-orb orb-1"></div>
+  <div class="floating-orb orb-2"></div>
+  <div class="floating-orb orb-3"></div>
+
+  <!-- 3D Cube -->
+  <div class="cube-container">
+    <div class="cube">
+      <div class="cube-face"></div>
+      <div class="cube-face"></div>
+      <div class="cube-face"></div>
+      <div class="cube-face"></div>
+      <div class="cube-face"></div>
+      <div class="cube-face"></div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="image-section">
+
+      <!-- 3D Rotating Carousel -->
+      <div class="carousel-3d-wrapper">
+        <div class="carousel-3d" id="carousel3d">
+          <div class="carousel-item">
+            <img src="https://kimi-web-img.kimi.ai/img/w0.peakpx.com/737ea66394957f510a9d456489b0ae9e5e65ea83.jpg" alt="Sukuna Domain Expansion">
+          </div>
+          <div class="carousel-item">
+            <img src="https://kimi-web-img.kimi.ai/img/images6.alphacoders.com/72544ad03a2e1604750f0d6832dafa36899a7e38.jpg" alt="Sukuna Action">
+          </div>
+          <div class="carousel-item">
+            <img src="https://kimi-web-img.kimi.ai/img/4kwallpapers.com/c32e83f0fffb8d2027401150cf8871a7b1ddbfe6.jpg" alt="Sukuna Art">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Flip Card -->
+      <div class="flip-card-3d" id="flipCard">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://kimi-web-img.kimi.ai/img/4kwallpapers.com/ac9ae6288a7e1002d0cbb0c17b41fdeacd750e44.png" alt="Sukuna Close Up"> 
+          </div> 
+          <div class="flip-card-back"> 
+            <h3>⛩️ MALEVOLENT SHRINE</h3> 
+            <p>Domain Expansion that manifests a Buddhist shrine. It grants guaranteed hits within its 200-meter radius, shredding everything with invisible slashing attacks.</p> 
+          </div> 
+        </div> 
+      </div> 
+ 
+      <div class="text-3d">Hover to Pause • Click to Flip</div> 
+ 
+      <div class="quote-box" id="quoteBox"> 
+        "Throughout heaven and earth, I alone am the honoured one." 
+      </div> 
+ 
+      <div class="controls-hint"> 
+        ✦ 3D Carousel auto-rotates ✦ Hover to interact ✦ Click flip card ✦ 
+      </div> 
+    </div> 
+ 
+    <div class="info-section"> 
+      <div class="info-card"> 
+        <div class="info-label">Character Profile</div> 
+        <div class="info-text"> 
+          <strong style="color:#fbbf24">Ryomen Sukuna</strong> is the primary antagonist of <em>Jujutsu Kaisen</em>. Known as the <strong>"King of Curses"</strong>, he was the most powerful jujutsu sorcerer during the Heian Era — the Golden Age of Jujutsu. His power was so feared that even the authorities of Japan held festivities in his honor rather than oppose him. 
+        </div> 
+        <div class="stat-row"> 
+          <span class="stat-pill">👁 Heian Era</span> 
+          <span class="stat-pill">⚔️ King of Curses</span> 
+          <span class="stat-pill">🔥 Fire & Slash</span> 
+        </div> 
+      </div> 
+ 
+      <div class="info-card"> 
+        <div class="info-label">Legendary Abilities</div> 
+        <div class="info-text"> 
+          Sukuna possesses the most transcendent cursed energy in history, surpassing even special-grade sorcerers. His innate technique <strong style="color:#f472b6">Shrine</strong> combines slashing attacks (<em>Dismantle & Cleave</em>) with devastating fire-based powers. He mastered <strong style="color:#f472b6">Domain Expansion: Malevolent Shrine</strong>, which warps space and shreds everything nearby without a barrier. 
+        </div> 
+        <div class="abilities-grid"> 
+          <div class="ability-item">⚔️ Dismantle</div> 
+          <div class="ability-item">🗡️ Cleave</div> 
+          <div class="ability-item">🔥 Fire Arrow</div> 
+          <div class="ability-item">⛩️ Malevolent Shrine</div> 
+          <div class="ability-item">🌑 Black Flash</div> 
+          <div class="ability-item">🔄 Reverse Cursed</div> 
+        </div> 
+      </div> 
+ 
+      <div class="info-card"> 
+        <div class="info-label">Physical Prowess</div> 
+        <div class="info-text"> 
+          Beyond his cursed techniques, Sukuna is a <strong>master hand-to-hand combatant</strong> with immense strength, speed, and durability. He can punch through skyscrapers, outrun opponents at 60+ km/h, and tank attacks like Gojo's Hollow Purple. His true form wields <strong>four arms and two mouths</strong>, allowing him to cast complex techniques while fighting. 
+        </div> 
+      </div> 
+ 
+      <div class="info-card"> 
+        <div class="info-label">Vessel & Legacy</div> 
+        <div class="info-text"> 
+          Sukuna's essence was divided into <strong style="color:#fbbf24">20 indestructible fingers</strong>, each containing cursed energy equivalent to a special-grade curse. He currently inhabits <strong>Yuji Itadori</strong> as his vessel, though he later transferred to <strong>Megumi Fushiguro's</strong> body using the Ten Shadows Technique. Even Gojo Satoru acknowledged that a fight against Sukuna would be incredibly difficult. 
+        </div> 
+      </div> 
+    </div> 
+  </div> 
+ 
+  <div class="domain-bar"></div> 
+</div> 
+ 
+<script> 
+(function() { 
+  // 3D Carousel pause on hover 
+  const carousel = document.getElementById('carousel3d'); 
+  const wrapper = document.querySelector('.carousel-3d-wrapper'); 
+ 
+  wrapper.addEventListener('mouseenter', () => { 
+    carousel.style.animationPlayState = 'paused'; 
+  }); 
+  wrapper.addEventListener('mouseleave', () => { 
+    carousel.style.animationPlayState = 'running'; 
+  }); 
+ 
+  // 3D Flip Card 
+  const flipCard = document.getElementById('flipCard'); 
+  flipCard.addEventListener('click', () => { 
+    flipCard.classList.toggle('flipped'); 
+  }); 
+ 
+  // Floating Orbs mouse follow (subtle) 
+  document.addEventListener('mousemove', (e) => { 
+    const orbs = document.querySelectorAll('.floating-orb'); 
+    const x = (e.clientX / window.innerWidth - 0.5) * 20; 
+    const y = (e.clientY / window.innerHeight - 0.5) * 20; 
+    orbs.forEach((orb, i) => { 
+      orb.style.transform = `translate(${x * (i + 1) * 0.5}px, ${y * (i + 1) * 0.5}px)`; 
+    }); 
+  }); 
+ 
+  // ===== FIXED MUSIC SYSTEM ===== 
+  let audioCtx = null; 
+  let isPlaying = false; 
+  let oscillators = []; 
+  let gainNode = null; 
+  let lfoNode = null;  // renamed from 'lfo' to avoid shadowing 
+  let filterNode = null; 
+ 
+  const musicToggle = document.getElementById('musicToggle'); 
+  const musicIcon = document.getElementById('musicIcon'); 
+  const musicWave = document.getElementById('musicWave'); 
+ 
+  async function createDarkAmbient() { 
+    try { 
+      // Create audio context 
+      const AudioContext = window.AudioContext || window.webkitAudioContext; 
+      audioCtx = new AudioContext(); 
+ 
+      // Resume if suspended (browser autoplay policy) 
+      if (audioCtx.state === 'suspended') { 
+        await audioCtx.resume(); 
+      } 
+ 
+      // Master gain 
+      gainNode = audioCtx.createGain(); 
+      gainNode.gain.value = 0; 
+      gainNode.connect(audioCtx.destination); 
+ 
+      // Drone 1 - Low bass (55Hz sine) 
+      const osc1 = audioCtx.createOscillator(); 
+      osc1.type = 'sine'; 
+      osc1.frequency.value = 55; 
+      const gain1 = audioCtx.createGain(); 
+      gain1.gain.value = 0.2; 
+      osc1.connect(gain1); 
+      gain1.connect(gainNode); 
+      oscillators.push(osc1); 
+ 
+      // Drone 2 - Mid drone (110Hz triangle) 
+      const osc2 = audioCtx.createOscillator(); 
+      osc2.type = 'triangle'; 
+      osc2.frequency.value = 110; 
+      const gain2 = audioCtx.createGain(); 
+      gain2.gain.value = 0.1; 
+      osc2.connect(gain2); 
+      gain2.connect(gainNode); 
+      oscillators.push(osc2); 
+ 
+      // Drone 3 - High tension (220Hz sawtooth with filter) 
+      const osc3 = audioCtx.createOscillator(); 
+      osc3.type = 'sawtooth'; 
+      osc3.frequency.value = 220; 
+      filterNode = audioCtx.createBiquadFilter(); 
+      filterNode.type = 'lowpass'; 
+      filterNode.frequency.value = 300; 
+      filterNode.Q.value = 2; 
+      const gain3 = audioCtx.createGain(); 
+      gain3.gain.value = 0.05; 
+      osc3.connect(filterNode); 
+      filterNode.connect(gain3); 
+      gain3.connect(gainNode); 
+      oscillators.push(osc3); 
+ 
+      // LFO for filter modulation 
+      lfoNode = audioCtx.createOscillator(); 
+      lfoNode.type = 'sine'; 
+      lfoNode.frequency.value = 0.08; 
+      const lfoGain = audioCtx.createGain(); 
+      lfoGain.gain.value = 150; 
+      lfoNode.connect(lfoGain); 
+      lfoGain.connect(filterNode.frequency); 
+      lfoNode.start(); 
+ 
+      // Start all oscillators 
+      oscillators.forEach(o => o.start()); 
+ 
+      // Fade in over 2 seconds 
+      const now = audioCtx.currentTime; 
+      gainNode.gain.setValueAtTime(0, now); 
+      gainNode.gain.linearRampToValueAtTime(0.15, now + 2); 
+ 
+      console.log('Audio started successfully'); 
+    } catch (err) { 
+      console.error('Audio error:', err); 
+      alert('Could not start audio. Try clicking the button again.'); 
+    } 
+  } 
+ 
+  function stopMusic() { 
+    if (!audioCtx) return; 
+ 
+    try { 
+      // Fade out 
+      const now = audioCtx.currentTime; 
+      gainNode.gain.setValueAtTime(gainNode.gain.value, now); 
+      gainNode.gain.linearRampToValueAtTime(0, now + 0.5); 
+ 
+      // Stop everything after fade 
+      setTimeout(() => { 
+        oscillators.forEach(o => { try { o.stop(); } catch(e){} }); 
+        if (lfoNode) { try { lfoNode.stop(); } catch(e){} } 
+        oscillators = []; 
+        lfoNode = null; 
+        filterNode = null; 
+        if (audioCtx) { 
+          audioCtx.close(); 
+          audioCtx = null; 
+        } 
+      }, 600); 
+    } catch (err) { 
+      console.error('Stop error:', err); 
+    } 
+  } 
+ 
+  musicToggle.addEventListener('click', async () => { 
+    if (!isPlaying) { 
+      await createDarkAmbient(); 
+      isPlaying = true; 
+      musicIcon.textContent = '🔊'; 
+      musicToggle.classList.remove('off'); 
+      musicWave.style.animation = 'wave-pulse 2s infinite'; 
+    } else { 
+      stopMusic(); 
+      isPlaying = false; 
+      musicIcon.textContent = '🔇'; 
+      musicToggle.classList.add('off'); 
+      musicWave.style.animation = 'none'; 
+    } 
+  }); 
+ 
+  // Rotating Quotes 
+  const quotes = [ 
+    '"Throughout heaven and earth, I alone am the honoured one."', 
+    '"Know your place, fool."', 
+    "\"Stand proud. You're strong.\"", 
+    "\"I'll kill you without a trace.\"" 
+  ]; 
+  let quoteIndex = 0; 
+  const quoteBox = document.getElementById('quoteBox'); 
+ 
+  setInterval(() => { 
+    quoteBox.style.opacity = '0'; 
+    setTimeout(() => { 
+      quoteIndex = (quoteIndex + 1) % quotes.length; 
+      quoteBox.textContent = quotes[quoteIndex]; 
+      quoteBox.style.opacity = '1'; 
+    }, 500); 
+  }, 6000); 
+ 
+  // Floating curse marks 
+  const container = document.querySelector('.sukuna-container'); 
+  const marks = ['呪', '宿', '儺', '廻', '戦']; 
+  for (let i = 0; i < 5; i++) { 
+    const mark = document.createElement('div'); 
+    mark.className = 'curse-mark'; 
+    mark.textContent = marks[i]; 
+    mark.style.left = (10 + Math.random() * 80) + '%'; 
+    mark.style.top = (10 + Math.random() * 80) + '%'; 
+    mark.style.animationDelay = (i * 1.2) + 's'; 
+    mark.style.fontSize = (20 + Math.random() * 30) + 'px'; 
+    container.appendChild(mark); 
+  } 
+ 
+  // Entrance animation for cards 
+  const cards = document.querySelectorAll('.info-card'); 
+  cards.forEach((card, i) => { 
+    card.style.opacity = '0'; 
+    card.style.transform = 'translateY(30px) rotateX(10deg)'; 
+    setTimeout(() => { 
+      card.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; 
+      card.style.opacity = '1'; 
+      card.style.transform = 'translateY(0) rotateX(0deg)'; 
+    }, 300 + i * 200); 
+  }); 
+})(); 
+</script> 
+ 
+</body> 
+</html>
